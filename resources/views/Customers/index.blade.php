@@ -3,9 +3,11 @@
 @section('title', 'Daftar Customer')
 
 @section('content')
-    <h1>Daftar Customer</h1>
-    <a href="{{ route('customers.create') }}">Tambah Customer</a>
-    <table>
+    <div class="d-flex justify-content-between align-items-center my-4">
+        <h1>Daftar Customer</h1>
+        <a href="{{ route('customers.create') }}" class="btn btn-primary">Tambah Customer</a>
+    </div>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>ID</th>
@@ -21,12 +23,12 @@
                     <td>{{ $customer->nama_customer }}</td>
                     <td>{{ $customer->jenis_kelamin }}</td>
                     <td>
-                        <a href="{{ route('customers.show', $customer) }}">Lihat</a>
-                        <a href="{{ route('customers.edit', $customer) }}">Edit</a>
+                        <a href="{{ route('customers.show', $customer) }}" class="btn btn-info btn-sm">Lihat</a>
+                        <a href="{{ route('customers.edit', $customer) }}" class="btn btn-warning btn-sm">Edit</a>
                         <form action="{{ route('customers.destroy', $customer) }}" method="POST" style="display:inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Hapus</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                         </form>
                     </td>
                 </tr>

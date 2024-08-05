@@ -31,4 +31,11 @@
                 <option value="Putih" {{ $kendaraan->warna == 'Putih' ? 'selected' : '' }}>Putih</option>
                 <option value="Hitam" {{ $kendaraan->warna == 'Hitam' ? 'selected' : '' }}>Hitam</option>
                 <option value="Hijau" {{ $kendaraan->warna == 'Hijau' ? 'selected' : '' }}>Hijau</option>
-                <option value="Biru" {{ $kendaraan->warna == 'Biru
+                <option value="Biru" {{ $kendaraan->warna == 'Biru' ? 'selected' : '' }}>Biru</option>
+                <option value="Merah" {{ $kendaraan->warna == 'Merah' ? 'selected' : '' }}>Merah</option>
+                <option value="Lain" {{ $kendaraan->warna == 'Lain' ? 'selected' : '' }}>Lain</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+@endsection

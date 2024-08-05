@@ -18,16 +18,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($kendaraan as $kendaraan)
+            @foreach($kendaraan as $item)
                 <tr>
-                    <td>{{ $kendaraan->no_pol }}</td>
-                    <td>{{ $kendaraan->no_mesin }}</td>
-                    <td>{{ ucfirst($kendaraan->merek) }}</td>
-                    <td>{{ ucfirst($kendaraan->warna) }}</td>
+                    <td>{{ $item->no_pol }}</td>
+                    <td>{{ $item->no_mesin }}</td>
+                    <td>{{ ucfirst($item->merek) }}</td>
+                    <td>{{ ucfirst($item->warna) }}</td>
                     <td>
-                        <a href="{{ route('kendaraan.show', $kendaraan) }}" class="btn btn-info btn-sm">Lihat</a>
-                        <a href="{{ route('kendaraan.edit', $kendaraan) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('kendaraan.destroy', $kendaraan) }}" method="POST" style="display:inline">
+                        <a href="{{ route('kendaraan.show', $item->no_pol) }}" class="btn btn-info btn-sm">Lihat</a>
+                        <a href="{{ route('kendaraan.edit', $item->no_pol) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('kendaraan.destroy', $item->no_pol) }}" method="POST" style="display:inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Hapus</button>

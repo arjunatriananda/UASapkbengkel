@@ -37,7 +37,7 @@
                             <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                         </form>
                     </td>
-                </tr>
+</tr>
             @endforeach
         </tbody>
     </table>

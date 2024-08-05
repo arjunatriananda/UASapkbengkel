@@ -16,7 +16,7 @@ class SupplierController extends Controller
 
     public function create()
     {
-        $barangs = Barang::all();
+        $barang = Barang::all();
         return view('supplier.create', compact('barangs'));
     }
 
@@ -40,7 +40,7 @@ class SupplierController extends Controller
 
     public function edit(Supplier $supplier)
     {
-        $barangs = Barang::all();
+        $barang = Barang::all();
         return view('supplier.edit', compact('supplier', 'barangs'));
     }
 

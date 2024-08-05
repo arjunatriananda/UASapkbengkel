@@ -9,13 +9,13 @@ class KendaraanController extends Controller
 {
     public function index()
     {
-        $kendaraans = Kendaraan::all();
-        return view('kendaraans.index', compact('kendaraans'));
+        $kendaraan = Kendaraan::all();
+        return view('kendaraan.index', compact('kendaraan'));
     }
 
     public function create()
     {
-        return view('kendaraans.create');
+        return view('kendaraan.create');
     }
 
     public function store(Request $request)
@@ -28,35 +28,46 @@ class KendaraanController extends Controller
         ]);
 
         Kendaraan::create($request->all());
-        return redirect()->route('kendaraans.index')->with('success', 'Kendaraan berhasil ditambahkan');
+        return redirect()->route('kendaraan.index')->with('success', 'Kendaraan berhasil ditambahkan');
     }
 
-    public function show(Kendaraan $kendaraan)
+    public function show($id)
     {
-        return view('kendaraans.show', compact('kendaraan'));
+        $kendaraan = Kendaraan::findOrFail($id);
+        return view('kendaraan.show', compact('kendaraan'));
     }
 
-    public function edit(Kendaraan $kendaraan)
+    public function edit($id)
     {
-        return view('kendaraans.edit', compact('kendaraan'));
+        $kendaraan = Kendaraan::findOrFail($id);
+        return view('kendaraan.edit', compact('kendaraan'));
     }
 
-    public function update(Request $request, Kendaraan $kendaraan)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'no_pol' => 'required|string|max:10|unique:kendaraan,no_pol,'.$kendaraan->no_pol.',no_pol',
+            'no_pol' => 'required|string|max:10|unique:kendaraan,no_pol,'.$id.',no_pol',
             'no_mesin' => 'required|string|max:15',
             'merek' => 'required|in:honda,yamaha,suzuki,kawasaki,lain',
             'warna' => 'required|in:Putih,Hitam,Hijau,Biru,Merah,Lain',
         ]);
 
+        $kendaraan = Kendaraan::findOrFail($id);
         $kendaraan->update($request->all());
-        return redirect()->route('kendaraans.index')->with('success', 'Kendaraan berhasil diupdate');
+        return redirect()->route('kendaraan.index')->with('success', 'Kendaraan berhasil diupdate');
     }
 
-    public function destroy(Kendaraan $kendaraan)
+    public function destroy($no_pol)
     {
+        $kendaraan = Kendaraan::where('no_pol', $no_pol)->first();
+    
+        if (!$kendaraan) {
+            return redirect()->route('kendaraan.index')->with('error', 'Kendaraan not found.');
+        }
+    
         $kendaraan->delete();
-        return redirect()->route('kendaraans.index')->with('success', 'Kendaraan berhasil dihapus');
+    
+        return redirect()->route('kendaraan.index')->with('success', 'Kendaraan successfully deleted.');
     }
+    
 }
